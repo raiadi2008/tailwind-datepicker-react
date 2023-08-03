@@ -2,7 +2,7 @@
 node_modules
 refs
 types
-dist
+
 test
 .publishprocess
 .vscode
