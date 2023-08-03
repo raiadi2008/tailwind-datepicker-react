@@ -3,7 +3,7 @@
 	"version": "1.4.0",
 	"description": "A tailwindcss/flowbite datepicker component built as a react component with types",
 	"main": "dist/index.js",
-	"types": "types/index.d.ts",
+	"types": "dist/index.d.ts",
 	"files": [
 		"dist",
 		"types",
