@@ -6,7 +6,7 @@ import DatePickerPopup from "./DatePickerPopup"
 import DatePickerProvider, { DatePickerContext } from "./DatePickerProvider"
 
 export interface IDatePickerProps {
-	children?: ReactElement | ReactNode
+	children?: ReactElement | undefined
 	options?: IOptions
 	onChange?: (date: Date) => void
 	show: boolean
@@ -53,13 +53,7 @@ const DatePickerMain = ({ options: customOptions, children }: { options?: IOptio
 					<div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 						<CalendarIcon />
 					</div>
-					<Input
-						ref={InputRef}
-						idProp={options?.inputIdProp}
-						nameProp={options?.inputNameProp}
-						placeholderProp={options?.inputPlaceholderProp}
-						dateFormat={options?.inputDateFormatProp}
-					/>
+					<Input ref={InputRef} idProp={options?.inputIdProp} nameProp={options?.inputNameProp} placeholderProp={options?.inputPlaceholderProp} dateFormat={options?.inputDateFormatProp} />
 				</div>
 			)}
 			{show && <DatePickerPopup ref={DatePickerRef} />}
@@ -67,15 +61,15 @@ const DatePickerMain = ({ options: customOptions, children }: { options?: IOptio
 	)
 }
 
-const Input = forwardRef<HTMLInputElement, { idProp ?: string, nameProp?: string, placeholderProp ?: string, dateFormat?: Intl.DateTimeFormatOptions }>((props, ref) => {
+const Input = forwardRef<HTMLInputElement, { idProp?: string; nameProp?: string; placeholderProp?: string; dateFormat?: Intl.DateTimeFormatOptions }>((props, ref) => {
 	const { setShow, selectedDate, showSelectedDate, options, getFormattedDate } = useContext(DatePickerContext)
-	
-	const nameProp = props.nameProp || "date";
-	const idProp = props.idProp || nameProp;
-	const placeholderProp = props.placeholderProp || "Select Date";
 
-	const format = props.dateFormat || null;
-	
+	const nameProp = props.nameProp || "date"
+	const idProp = props.idProp || nameProp
+	const placeholderProp = props.placeholderProp || "Select Date"
+
+	const format = props.dateFormat || null
+
 	return (
 		<input
 			ref={ref}
